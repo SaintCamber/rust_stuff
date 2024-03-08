@@ -91,11 +91,37 @@
 // }
 
 //this works as well! it will complain about x and z not being used so they
-//should be used or labled _x/_y to denote the intentional non use.
-fn main() {
-    let tup = (500, 6.4, 1);
+// //should be used or labled _x/_y to denote the intentional non use.
+// fn main() {
+//     let tup = (500, 6.4, 1);
 
-    let (_x, y, _z) = tup;
+//     let (_x, y, _z) = tup;
 
-    println!("The value of y is: {y}");
+//     println!("The value of y is: {y}");
+// }
+
+
+// coming from python and js this next bit is probably going to be one that is
+// rough for a while...
+// arrays in rust have fixed lengths and must be the same data type across all
+// values.
+
+// fn main(){
+//     let arr = [1,2,3,4,5];
+
+//     println!("{}", arr[3]);
+// }
+
+// few observations arrays are indexed in a similar fashion to previous
+// languages i've worked with however string interpolation from an array seems
+// odd, i had to place empty bracket and list the array value after a comma
+// inside the println statement, need to test using multiple values so will do
+// that below.
+
+fn main(){
+    let arr = [1,2,3,4,5];
+
+    println!("{},{}", arr[3],arr[4]);
 }
+
+//comma seperated values worked as intuited!
