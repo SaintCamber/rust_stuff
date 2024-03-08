@@ -59,10 +59,12 @@
 
 
 
-// strings of type char in rust are denoted with singe quotes and are 4 bytes so
+// char literals in rust are denoted with singe quotes and are 4 bytes so
 // able to rep more than just ascii
 // error i noted: variables are prefered to be snakecase so start with a
 // lowercase letter!
+
+// string literals use "" double quotes!
 
 fn main(){
     let c = 'C';
