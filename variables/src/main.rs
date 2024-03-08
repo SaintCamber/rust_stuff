@@ -66,10 +66,26 @@
 
 // string literals use "" double quotes!
 
-fn main(){
-    let c = 'C';
+// fn main(){
+//     let c = 'C';
 
-    let z: char = 'Z';
+//     let z: char = 'Z';
 
-    println!("{c} comes before {Z}");
+//     println!("{c} comes before {Z}");
+// }
+
+
+//rust allows compounds such as tuples as well and has a rather intuitive
+//destructuring method in that variables can be assigned as tuple.index and the
+//compiler will correctly place the vales from tuple in the slots as shown below.
+fn main() {
+    let x: (i32, f64, u8) = (500, 6.4, 1);
+
+    let five_hundred = x.0;
+
+    let six_point_four = x.1;
+
+    let one = x.2;
+
+    println!("five_hundred is {five_hundred},six_point_four is {six_point_four}, one is {one}")
 }
