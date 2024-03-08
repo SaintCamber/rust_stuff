@@ -78,14 +78,24 @@
 //rust allows compounds such as tuples as well and has a rather intuitive
 //destructuring method in that variables can be assigned as tuple.index and the
 //compiler will correctly place the vales from tuple in the slots as shown below.
+// fn main() {
+//     let x: (i32, f64, u8) = (500, 6.4, 1);
+
+//     let five_hundred = x.0;
+
+//     let six_point_four = x.1;
+
+//     let one = x.2;
+
+//     println!("five_hundred is {five_hundred},six_point_four is {six_point_four}, one is {one}")
+// }
+
+//this works as well! it will complain about x and z not being used so they
+//should be used or labled _x/_y to denote the intentional non use.
 fn main() {
-    let x: (i32, f64, u8) = (500, 6.4, 1);
+    let tup = (500, 6.4, 1);
 
-    let five_hundred = x.0;
+    let (_x, y, _z) = tup;
 
-    let six_point_four = x.1;
-
-    let one = x.2;
-
-    println!("five_hundred is {five_hundred},six_point_four is {six_point_four}, one is {one}")
+    println!("The value of y is: {y}");
 }
