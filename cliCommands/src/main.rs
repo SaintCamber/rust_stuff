@@ -22,6 +22,10 @@ struct Config {
 }
 impl Config {
 fn new(args: &[String]) -> Config {
+    if args.len() < 3 {
+        let len = args.len();
+        panic!("not enough arguments: {len} were supplied but 3 are required")
+    }
     let query = &args[1];
     let file_path = &args[2];
 
