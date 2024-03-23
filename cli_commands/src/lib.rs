@@ -1,27 +1,36 @@
 use std::error::Error;
 use std::fs;
+use std::env;
 
 pub struct Config {
     pub query: String,
     pub file_path: String,
+    pub ignore_case: bool,
 }
 impl Config {
 pub fn build(args: &[String]) -> Result <Config, &'static str> {
     if args.len() < 3 {
-        let len = args.len();
-        panic!("not enough arguments: {len} were supplied but 3 are required")
+        return Err("not enough arguments: {len} were supplied but 3 are required");
     }
     let query = &args[1];
     let file_path = &args[2];
 
-    Ok (Config {query: query.to_string(),file_path: file_path.to_string()})
+    let ignore_case = env::var("IGNORE_CASE").is_ok();
+
+    Ok (Config {query: query.to_string(),file_path: file_path.to_string(),ignore_case})
 }
 }
 
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(config.file_path)?;
 
-    for line in search(&config.query, &contents) {
+    let results = if config.ignore_case {
+        search_case_insensitive(&config.query, &contents)
+    } else {
+        search(&config.query, &contents)
+    };
+
+    for line in results {
         println!("{line}");
     }
 
@@ -29,9 +38,9 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 }
 
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut results : Vec<_> = Vec::new();
+    let mut results  = Vec::new();
 
-    for line in contents.lines(){
+    for line in contents.lines() {
         if line.contains(query){
             results.push(line);
         }
@@ -42,13 +51,14 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 }
 
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str)-> Vec<&'a str>{
-    let mut results : Vec<_> Vec::new();
+    let mut results = Vec::new();
 
-    for line in contents.lines().to_lowercase(){
-        if line.contains(query.to_lowercase()){
-            results.push(line)
+    for line in contents.lines(){
+        if line.to_lowercase().contains(&query.to_lowercase()){
+            results.push(line);
         }
     }
+    return results
     
 }
 
@@ -56,6 +66,8 @@ pub fn search_case_insensitive<'a>(query: &str, contents: &'a str)-> Vec<&'a str
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::search;
+
 
     #[test]
     fn one_result() {
@@ -72,10 +84,12 @@ Pick three.";
 #[cfg(test)]
 mod tests {
     use::super::*;
+    use crate::search_case_insensitive;
+
 
     #[test]
     fn case_sensitive(){
-        let query = "duct"
+        let query = "Duct";
         let contents = "\
         Rust:
         safe,fast,productive,
