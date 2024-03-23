@@ -7,9 +7,11 @@ fn main() -> io::Result<()> {
     
     let args: Vec<String> = env::args().collect(); // grab supplied args as a vec<string>
     
-    let mut path = String::from(&args[0]);
+    let mut path = String::from(&args[1]);
 
-   let _ = io::stdin().read_line(&mut path);
     println!("congrats you broke it!");
+    println!("{}",path);
+    let stdin = io::stdin;
+    let mut handle =stdin.lock();
     Ok(())
 }
