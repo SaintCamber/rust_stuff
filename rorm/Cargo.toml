@@ -1,0 +1,7 @@
+[package]
+name = "rorm"
+version = "0.0.1"
+author = "Sarah Nodwell"
+
+[dependencies]
+sqlx = { version = "0.6.2", features = ["runtime-async-std-native-tls", "postgres", "sqlite"] }
