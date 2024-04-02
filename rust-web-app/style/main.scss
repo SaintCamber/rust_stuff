@@ -1,0 +1,8 @@
+body {
+	font-family: sans-serif;
+	text-align: center;
+}
+
+body > button:hover {
+	box-shadow: 15px 15px rgb(3,0,0,0.5);
+}

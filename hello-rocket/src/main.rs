@@ -1,4 +1,5 @@
 #[macro_use] extern crate rocket;
+use rocket::Request;
 
 #[get("/")]
 fn index() -> &'static str {
@@ -9,13 +10,16 @@ fn hello(name: &str) -> String {
     format!("Hello, {}!", name)
 }
 
-#[get("/",rank=9)]
-fn catch() -> &'static str {
-    "requested page not found!"
+#[catch(404)]
+fn not_found(req: &Request) -> String {
+    format!("Sorry, '{}' is not a valid path.", req.uri())
 }
 
 #[launch]
 fn rocket() -> _ {
-    let app = rocket::build();
-    app.mount("/",routes![index,hello,catch])
+    rocket::build()
+    .register("/",catchers![not_found])
+    .mount("/",routes![index,hello])
+
+
 }
