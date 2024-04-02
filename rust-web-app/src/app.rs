@@ -2,9 +2,10 @@ use crate::error_template::{AppError, ErrorTemplate};
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
-
+use crate::components::SimpleCounter;
 #[component]
 pub fn App() -> impl IntoView {
+
     // Provides context that manages stylesheets, titles, meta tags, etc.
     provide_meta_context();
 
@@ -29,7 +30,8 @@ pub fn App() -> impl IntoView {
         }>
             <main>
                 <Routes>
-                    <Route path="" view=HomePage/>
+                    <Route path="" view=HomePageTwo/>
+                    <Route path="/test" view=SimpleCounter::Simple_Counter/>
                 </Routes>
             </main>
         </Router>
@@ -38,13 +40,19 @@ pub fn App() -> impl IntoView {
 
 /// Renders the home page of your application.
 #[component]
-fn HomePage() -> impl IntoView {
+fn HomePageTwo() -> impl IntoView {
     // Creates a reactive value to update the button
     let (count, set_count) = create_signal(0);
     let on_click = move |_| set_count.update(|count| *count += 1);
 
     view! {
-        <h1>"Welcome to Leptos!"</h1>
-        <button class=("red", move || count.get() % 2 == 1) on:click=on_click>"Click Me: " {count}</button>
+        <h1>"Testing component creations"</h1>
+        <h3>"here goes a smaller heading"</h3>
+        <div>
+            <h1>"nested h1 with a counter"</h1>
+            <button class=("red", move || count.get() % 2 == 1) on:click=on_click>"Click Me: " {count}</button>
+
+            </div>
     }
 }
+
