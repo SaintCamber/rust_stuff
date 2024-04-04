@@ -13,6 +13,7 @@ leptos = { version = "0.6" }
 leptos_axum = { version = "0.6", optional = true }
 leptos_meta = { version = "0.6" }
 leptos_router = { version = "0.6" }
+leptos-use = "0.10" 
 tokio = { version = "1", features = ["rt-multi-thread"], optional = true }
 tower = { version = "0.4", optional = true }
 tower-http = { version = "0.5", features = ["fs"], optional = true }
@@ -30,6 +31,7 @@ ssr = [
     "dep:tower-http",
     "dep:leptos_axum",
     "leptos/ssr",
+    "leptos-use/ssr",
     "leptos_meta/ssr",
     "leptos_router/ssr",
     "dep:tracing",
