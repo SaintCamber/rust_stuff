@@ -1,2 +1,1 @@
-pub mod Simple_Counter;
-pub mod Skybox;
+pub mod navbar;

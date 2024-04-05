@@ -2,8 +2,7 @@ use crate::error_template::{AppError, ErrorTemplate};
 use leptos::*;
 use leptos_meta::*;
 use leptos_router::*;
-use crate::components::Simple_Counter;
-use crate::components::Skybox;
+use crate::components::navbar;
 #[component]
 pub fn App() -> impl IntoView {
 
@@ -18,7 +17,7 @@ pub fn App() -> impl IntoView {
         <Stylesheet id="leptos" href="/pkg/rust-web-app.css"/>
 
         // sets the document title
-        <Title text="Welcome to Leptos"/>
+        <Title text="Infinibnb"/>
 
         // content for this welcome page
         <Router fallback=|| {
@@ -29,31 +28,33 @@ pub fn App() -> impl IntoView {
             }
             .into_view()
         }>
-            <main>
-                <Routes>
-                    <Route path="" view=HomePageTwo/>
-                    <Route path="/test" view=Skybox::Skybox_background/>
-                </Routes>
-            </main>
-        </Router>
+        <main>
+        <navbar::Nav/>
+        <Routes>
+        <Route path="/" view=HomePage/>
+        </Routes>
+        <navbar::Foot/>
+        </main>
+                </Router>
     }
 }
 
 /// Renders the home page of your application.
 #[component]
-fn HomePageTwo() -> impl IntoView {
+fn HomePage() -> impl IntoView {
     // Creates a reactive value to update the button
-    let (count, set_count) = create_signal(0);
+    // let (_count, _set_count) = create_signal(0);
 
 
     view! {
-        <h1>"Testing component creations"</h1>
-        <h3>"here goes a smaller heading"</h3>
-        <div>
-            <h1>"nested h1 with a counter"</h1>
-            <Skybox::Skybox_background/>
-
+        <div class="home">
+            <h1>"HomePage"</h1>
+            <div class="space">"Content"
+                <div>
+                    <h1>"stuff"</h1>
+                </div>
             </div>
+        </div>
     }
 }
 
