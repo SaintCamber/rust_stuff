@@ -31,7 +31,7 @@ pub fn App() -> impl IntoView {
         <main>
         <navbar::Nav/>
         <Routes>
-        <Route path="/" view=HomePage/>
+        <Route path="/" view=HomePage ssr=SsrMode::Async/>
         </Routes>
         <navbar::Foot/>
         </main>

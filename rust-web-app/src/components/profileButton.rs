@@ -1,6 +1,7 @@
 use leptos::*;
 use leptos::html::Div;
 use leptos_use::on_click_outside;
+use icondata as i;
 
 #[component]
 pub fn Profile_button() -> impl IntoView {
@@ -12,7 +13,7 @@ pub fn Profile_button() -> impl IntoView {
     
     view! {
         <div node_ref=menu_ref>
-            <button on:click=move |_| { handle_click() }>profile</button>
+            <div class="profButtonContainer" on:click=move |_| { handle_click() }><leptos_icons::Icon icon=i::FaBarsSolid /></div>
             <Show when=move || show_menu.get() fallback=|| ()>
             <ul >
                 <li>
