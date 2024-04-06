@@ -25,6 +25,7 @@ diesel = { version = "2.1.0", features = ["sqlite"] }
 dotenvy = "0.15"
 leptos_icons = "0.3.0"
 icondata = "=0.3.0"
+pwhash = "1"
 
 [features]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
@@ -48,6 +49,9 @@ opt-level = 'z'
 lto = true
 codegen-units = 1
 panic = "abort"
+
+[dev-dependencies]
+diesel_cli = "2.1.1"
 
 [package.metadata.leptos]
 # The name used by wasm-bindgen/cargo-leptos for the JS/WASM bundle. Defaults to the crate name
