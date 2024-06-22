@@ -10,7 +10,7 @@ fn main() {
 
     loop{
         let mut guess = String::new();
-    println!("Please input your guess.");
+    println!("Please input your guess!");
     
     
     io::stdin()
